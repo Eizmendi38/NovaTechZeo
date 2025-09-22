@@ -1,7 +1,7 @@
 package aplicacion;
 
-import obj.Firmas;
 import java.util.*;
+import obj.Firmas;
 
 public class MenuAdmin {
     public static void ejecutar(ArrayList<Firmas> firmList, Scanner scanner, Random random) {
