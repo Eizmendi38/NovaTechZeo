@@ -1,0 +1,25 @@
+{
+  "project": "Reto 1",
+  "mission": "Crear una nueva empresa digital innovadora.",
+  "objectives": [
+    "Planear y crear la infraestructura necesaria para una nueva empresa.",
+    "Programar los programas que necesitemos para hacer la empresa real."
+  ],
+  "roles": {
+    "Coordinador": "Coordinador (Gari): Coordinar al equipo según trabajan y repartir el trabajo, recordando y ayudando a sus compañeros con sus tareas.",
+    "Portavoz": "Portavoz (Iker): Ser la voz del grupo a la hora de hablar y exponer nuestras ideas",
+    "Portavoz 2": "Portavoz 2 (Odei): Ser la voz del grupo a la hora de hablar y exponer nuestras ideas en caso de que nuestro primer portavoz lo necesite o no esté presente.",
+    "Secretario": "Secretario (Jon): Encargarse de entregar las tareas en moodle, ordena las tareas pendientes y escribe los mensajes a los superiores",
+    "Materiales": "Materiales (Kristian): Recoger el entorno de trabajo y mantenerlo ordenado, además de repartir el material en caso de que haya"
+  },
+  "rules": [
+    "Respetar ideas ajenas y compartir ideas mutuas.",
+    "Cumplir el trabajo asignado, pidiendo ayuda cuando sea necesario.",
+    "Guardar el trabajo de forma compartida y no eliminar documentos importantes para el funcionamiento del equipo."
+  ],
+  "punishments": [
+    "Borrado del nombre del individuo en la tarea en la que haya faltado.",
+    "Exclusión de crédito de la tarea final y por ende las consecuencias planteadas por el tutor del reto.",
+    "En caso de no mostrar interés, el resto del equipo avisará al integrante penalizado y tendrá una calificación inferior en caso de no cambiar de conducta."
+  ]
+}
