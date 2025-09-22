@@ -52,6 +52,7 @@ public class Menu {
      Scanner scanner = new Scanner(System.in);
         ArrayList<Firmas> firmList = new ArrayList<>();
         Random random = new Random();
+        System.out.print("Seleccione una opción: ");
         System.out.println("¿Desea entrar al menú de miembro o al menú de coordinador?\n1. Miembro\n2. Coordinador");
         int usuario = scanner.nextInt();
         scanner.nextLine();
