@@ -38,10 +38,10 @@ import obj.Firmas;
 
                 switch (opcion) {
                     case 1:
-                    
+
                 }
 
-            }
+            } while (true);
         }
 
 
@@ -79,9 +79,9 @@ import obj.Firmas;
                         System.out.println("Opción no válida. Intente de nuevo.");
                 }
             
-        }
+        } while (true);
 
-        scanner.close();
     }
 
+}
 }
