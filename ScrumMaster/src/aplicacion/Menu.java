@@ -52,15 +52,16 @@ public class Menu {
      Scanner scanner = new Scanner(System.in);
         ArrayList<Firmas> firmList = new ArrayList<>();
         Random random = new Random();
-        System.out.println("Ingrese un nombre de usuario: ");
-        String usuario = scanner.nextLine();
+        System.out.println("¿Desea entrar al menú de miembro o al menú de coordinador?\n1. Miembro\n2. Coordinador");
+        int usuario = scanner.nextInt();
+        scanner.nextLine();
 
-        if (usuario.equals("usuario")) {
+        if (usuario == 1) {
             int opcion;
             do{
                 System.out.println("-----MENU DE OPCIONES DEL USUARIO-----");
-                System.out.println("1. Responsabilidades y penalizaciones");
-                System.out.println("2. Agregar firma");
+                System.out.println("1. Mostrar contrato");
+                System.out.println("2. Firmar");
                 System.out.println("3. Salir");
                 System.out.print("Seleccione una opción: ");
                 opcion = scanner.nextInt();
@@ -68,7 +69,12 @@ public class Menu {
 
                 switch (opcion) {
                     case 1:
-
+                    try {
+                        mostrarContrato("ScrumMaster/src/resources/charter.json");
+                    } catch (IOException e) {
+                        System.out.println("error al leer el archivo.");
+                    }
+                    break;
                     case 3:
                     System.out.println("Saliendo al sistema.");
                     return;
@@ -78,47 +84,46 @@ public class Menu {
         }
 
 
-        if (usuario.equals("administrados")){
-            int opcion;
+        if (usuario == 2){
+            int attempts = 0;
+            boolean guessed = false;
             do {
-                System.out.println("-----MENU DE OPCIONES DE ADMINISTRADOR-----");
-                System.out.println("1. Ver todas las firmas");
-                System.out.println("2. Salir");
-                System.out.println("Seleccione una opción: ");
-                opcion = scanner.nextInt();
-                scanner.nextLine(); 
+            System.out.println("Introduzca la contraseña: ");
+            String contrasena = scanner.nextLine();
+            if (contrasena.equals("1234")) {
+                guessed = true;
+                System.out.println("Bienvenido.");
+            } else {
+                System.out.println("Contraseña incorrecta.");
+                attempts++;
+            }
+            } while (attempts<3 && guessed==false);
 
-                switch (opcion) {
-                    case 1:
-                    try {
-                        mostrarContrato("ScrumMaster/src/resources/charter.json");
-                    } catch (IOException e) {
-                        System.out.println("error al leer el archivo.");
+            if (guessed==true) {
+                int opcion;
+                do {
+                    System.out.println("-----MENU DE OPCIONES DE ADMINISTRADOR-----");
+                    System.out.println("1. Ver todas las firmas");
+                    System.out.println("2. Salir");
+                    System.out.println("Seleccione una opción: ");
+                    opcion = scanner.nextInt();
+                    scanner.nextLine(); 
+
+                    switch (opcion) {
+                        case 1:
+                        
+                            break;
+                        case 2:
+                            System.out.println("Saliendo del programa...");
+                            return;
+                        default:
+                            System.out.println("Opción no válida. Intente de nuevo.");
                     }
-                        break;
-                    case 2:
-                        System.out.print("Ingrese el nombre del firmante: ");
-                        String nombre = scanner.nextLine();
-                        int id = random.nextInt(1000); 
-                        Firmas nuevaFirma = new Firmas(id, nombre);
-                        firmList.add(nuevaFirma);
-                        System.out.println("Firma agregada con ID: " + id);
-                        break;
-                    case 3:
-                        System.out.println("Lista de firmas:");
-                        for (Firmas firma : firmList) {
-                            System.out.println("ID: " + firma.getId() + ", Nombre: " + firma.getFirma() + ", Hora: " + firma.getHoraFirmada());
-                        }
-                        break;
-                    case 4:
-                        System.out.println("Saliendo del sistema...");
-                        return;
-                    default:
-                        System.out.println("Opción no válida. Intente de nuevo.");
-                }
-            
-        } while (true);
-
+                
+            } while (true);
+        } else {
+            System.out.println("Contraseña incorrecta. Cerrando programa.");
+        }
     }
 }
 }
