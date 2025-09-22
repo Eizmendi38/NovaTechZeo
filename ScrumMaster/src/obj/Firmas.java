@@ -5,9 +5,9 @@ import java.time.LocalDateTime;
 public class Firmas {
 
     //Declarar atributos
-    private int id;
-    private String firma;
-    private LocalDateTime horaFirmada;
+    private int id; //Identificador único de la firma
+    private String firma; //Nombre del firmante
+    private LocalDateTime horaFirmada;//Fecha y hora en que se firma
 
 
     // Constructor
