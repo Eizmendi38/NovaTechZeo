@@ -1,9 +1,13 @@
 package aplicacion;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 import obj.Firmas;
 
-    public class Menu { //Menu de opciones para el usuario 
+
+public class Menu { //Menu de opciones para el usuario 
     public static void mostrarMenuUsuario(){
         System.out.println("-----MENU DE OPCIONES DEL USUARIO-----");
         System.out.println("1. Responsabilidades y penalizaciones");
@@ -12,7 +16,6 @@ import obj.Firmas;
         System.out.print("Seleccione una opción: ");
     }
 
-
     public static void mostrarMenuAdmin() { //Menu de opciones para el administrador
         System.out.println("-----MENU DE OPCIONES DE ADMINISTRADOR-----");
         System.out.println("1. Ver todas las firmas");
@@ -20,9 +23,72 @@ import obj.Firmas;
         System.out.println("Seleccione una opción: ");
     }
 
+    public static void mostrarContrato() throws IOException {
+        String json = new String(Files.readAllBytes(Paths.get("ScrumMaster/src/resources/charter.json")));
 
+        String key = "\"mission\"";
+        int start = json.indexOf(key) + key.length() + 2;
+        int end = json.indexOf("\"", start + 1);
+        String mission = json.substring(start, end);
+
+        System.out.println("Formando parte de este equipo, te responsabilizas a cumplir con nuestra misión: " + mission+"\n");
+
+        key = "\"objectives\"";
+        start = json.indexOf("[", json.indexOf(key)) + 1;
+        end = json.indexOf("]", start);
+        String objectivesRaw = json.substring(start, end);
+
+        String[] objectives = objectivesRaw.replace("\"", "").split(",");
+
+        System.out.println("Para esto, has de cumplir los siguientes objetivos: ");
+        for (String obj : objectives) {
+            System.out.println("- " + obj.trim());
+        }
+        System.out.println("");
+
+        key = "\"roles\"";
+        start = json.indexOf("{", json.indexOf(key)) + 1;
+        end = json.indexOf("}", start);
+        String rolesRaw = json.substring(start, end);
+
+        String[] roles = rolesRaw.split("\",");
+        System.out.println("\nTambién haras el trabajo de tu rol asignado, que son los siguientes:");
+        for (String role : roles) {
+            int sep = role.indexOf(":");
+            if (sep > 0) {
+                String roleName = role.substring(0, sep).replace("\"", "").trim();
+                String roleDesc = role.substring(sep + 1).replace("\"", "").trim();
+                System.out.println("- " + roleName + ": " + roleDesc);
+            }
+        }
+
+        key = "\"rules\"";
+        start = json.indexOf("[", json.indexOf(key)) + 1;
+        end = json.indexOf("]", start);
+        String rulesRaw = json.substring(start, end);
+        String[] rules = rulesRaw.replace("\"", "").split(",");
+        System.out.println("\nTe comprometes a cumpli con las normas:");
+        for (String rule : rules) {
+            System.out.println("- " + rule.trim());
+        }
+
+        
+        key = "\"punishments\"";
+        start = json.indexOf("[", json.indexOf(key)) + 1;
+        end = json.indexOf("]", start);
+        String punishmentsRaw = json.substring(start, end);
+        String[] punishments = punishmentsRaw.replace("\"", "").split(",");
+        System.out.println("\nY si rompieses dichas normas, te verías afectado por los siguientes castigos:");
+        for (String punishment : punishments) {
+            System.out.println("- " + punishment.trim());
+        }
+    }
+
+    public static void rellenarArray() {
+
+    }
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+     Scanner scanner = new Scanner(System.in);
         ArrayList<Firmas> firmList = new ArrayList<>();
         Random random = new Random();
 
@@ -82,6 +148,5 @@ import obj.Firmas;
         } while (true);
 
     }
-
 }
 }
