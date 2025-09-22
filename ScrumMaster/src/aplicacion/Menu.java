@@ -82,8 +82,10 @@ public class Menu {
             int opcion;
             do {
                 System.out.println("-----MENU DE OPCIONES DE ADMINISTRADOR-----");
-                System.out.println("1. Ver todas las firmas");
-                System.out.println("2. Salir");
+                System.out.println("1. Ver contrato");
+                System.out.println("2. Agregar Firma");
+                System.out.println("3. Ver Firmas");
+                System.out.println("4. Salir");
                 System.out.println("Seleccione una opción: ");
                 opcion = scanner.nextInt();
                 scanner.nextLine(); 
