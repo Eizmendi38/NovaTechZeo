@@ -8,6 +8,6 @@ public class App {
         Random r= new Random();
         ArrayList<Firmas> firmList = new ArrayList<>();
         
-        System.out.println("Bienvenido al sistema de firmas.\n¿Deseas acceder al menú de ");
+        System.out.println("Bienvenido al sistema de firmas.\n¿Deseas acceder al menú de organizador o el de miembro?");
     }
 }
