@@ -17,6 +17,12 @@ public class Firmas {
         this.horaFirmada = LocalDateTime.now();
     }
 
+    public Firmas (int id, String firma, LocalDateTime horaFirmada) {
+        this.id = id;
+        this.firma = firma;
+        this.horaFirmada = horaFirmada;
+    }
+
     //Getters y Setters
     public int getId() {
         return id;

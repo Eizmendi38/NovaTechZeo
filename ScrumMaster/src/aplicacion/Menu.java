@@ -1,10 +1,11 @@
 package aplicacion;
 
+import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import obj.Charter;
 import java.util.*;
 import obj.Firmas;
+import com.google.gson.*;
 
 
 public class Menu { //Menu de opciones para el usuario 
@@ -23,75 +24,48 @@ public class Menu { //Menu de opciones para el usuario
         System.out.println("Seleccione una opción: ");
     }
 
-    public static void mostrarContrato() throws IOException {
-        String json = new String(Files.readAllBytes(Paths.get("ScrumMaster/src/resources/charter.json")));
+    public static void mostrarContrato(String archivo) throws IOException {
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
-        String key = "\"mission\"";
-        int start = json.indexOf(key) + key.length() + 2;
-        int end = json.indexOf("\"", start + 1);
-        String mission = json.substring(start, end);
+        try (FileReader reader = new FileReader(archivo)) {
+            Charter charter = gson.fromJson(reader, Charter.class);
 
-        System.out.println("Formando parte de este equipo, te responsabilizas a cumplir con nuestra misión: " + mission+"\n");
+            System.out.println("Nuestro proyecto es: " + charter.getProject());
+            System.out.println("Nuestra misión final es: " + charter.getMission());
 
-        key = "\"objectives\"";
-        start = json.indexOf("[", json.indexOf(key)) + 1;
-        end = json.indexOf("]", start);
-        String objectivesRaw = json.substring(start, end);
-
-        String[] objectives = objectivesRaw.replace("\"", "").split(",");
-
-        System.out.println("Para esto, has de cumplir los siguientes objetivos: ");
-        for (String obj : objectives) {
-            System.out.println("- " + obj.trim());
-        }
-        System.out.println("");
-
-        key = "\"roles\"";
-        start = json.indexOf("{", json.indexOf(key)) + 1;
-        end = json.indexOf("}", start);
-        String rolesRaw = json.substring(start, end);
-
-        String[] roles = rolesRaw.split("\",");
-        System.out.println("\nTambién haras el trabajo de tu rol asignado, que son los siguientes:");
-        for (String role : roles) {
-            int sep = role.indexOf(":");
-            if (sep > 0) {
-                String roleName = role.substring(0, sep).replace("\"", "").trim();
-                String roleDesc = role.substring(sep + 1).replace("\"", "").trim();
-                System.out.println("- " + roleName + ": " + roleDesc);
+            System.out.println("\nPara cumplir con nuestra misión, cumpliremos con nuestros objetivos:");
+            for (String obj : charter.getObjectives()) {
+                System.out.println("- " + obj);
             }
-        }
 
-        key = "\"rules\"";
-        start = json.indexOf("[", json.indexOf(key)) + 1;
-        end = json.indexOf("]", start);
-        String rulesRaw = json.substring(start, end);
-        String[] rules = rulesRaw.replace("\"", "").split(",");
-        System.out.println("\nTe comprometes a cumpli con las normas:");
-        for (String rule : rules) {
-            System.out.println("- " + rule.trim());
-        }
+            System.out.println("\nPara asegurarnos que cumplimos con los objetivos nos aferraremos a nuestros roles:");
+            for (Map.Entry<String, String> entry : charter.getRoles().entrySet()) {
+                System.out.println("- " + entry.getKey() + ": " + entry.getValue());
+            }
 
-        
-        key = "\"punishments\"";
-        start = json.indexOf("[", json.indexOf(key)) + 1;
-        end = json.indexOf("]", start);
-        String punishmentsRaw = json.substring(start, end);
-        String[] punishments = punishmentsRaw.replace("\"", "").split(",");
-        System.out.println("\nY si rompieses dichas normas, te verías afectado por los siguientes castigos:");
-        for (String punishment : punishments) {
-            System.out.println("- " + punishment.trim());
+            System.out.println("\nY para asegurar el funcionamiento del equipo seguiremos las normas:");
+            for (String rule : charter.getRules()) {
+                System.out.println("- " + rule);
+            }
+
+            System.out.println("\nEn caso contrario, sufriremos estos castigos:");
+            for (String punishment : charter.getPunishments()) {
+                System.out.println("- " + punishment);
+            }
+
+        } catch (IOException e) {
+            System.out.println("Error al leer " + archivo + ": " + e.getMessage());
         }
     }
 
     public static void rellenarArray() {
 
     }
+
     public static void main(String[] args) {
      Scanner scanner = new Scanner(System.in);
         ArrayList<Firmas> firmList = new ArrayList<>();
         Random random = new Random();
-
         System.out.println("Ingrese un nombre de usuario: ");
         String usuario = scanner.nextLine();
 
@@ -120,9 +94,11 @@ public class Menu { //Menu de opciones para el usuario
 
                 switch (opcion) {
                     case 1:
-                        System.out.println("Responsabilidades y penalizaciones:");
-                        System.out.println("- Responsabilidad 1: Descripción...");
-                        System.out.println("");
+                    try {
+                        mostrarContrato("ScrumMaster/src/resources/charter.json");
+                    } catch (IOException e) {
+                        System.out.println("error al leer el archivo.");
+                    }
                         break;
                     case 2:
                         System.out.print("Ingrese el nombre del firmante: ");

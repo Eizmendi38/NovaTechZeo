@@ -1,0 +1,8 @@
+{
+    "java.project.sourcePaths": [
+        "ScrumMaster\\src"
+    ],
+    "java.project.referencedLibraries": [
+        "ScrumMaster\\lib\\gson-2.13.2.jar"
+    ]
+}
