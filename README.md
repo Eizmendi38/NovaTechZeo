@@ -7,10 +7,10 @@ Nuestro programa muestra las condiciones y términos establecidos por el grupo p
 ### ¿Cómo funciona?
 **Paso 1:** Ingresar el nombre de usuario.
 
-**Paso 2:** Elegir el rol con el que quieres ingresar al programa.
+**Paso 2:** Elige el rol con el que quieres ingresar al programa.
 
-**Paso 3:** Dependiendo de la respuesta irás al ménu de *Usuario* o al de *Administrardor*.
+**Paso 3:** Dependiendo de la respuesta, irás al menú de *Usuario* o al de *Administrardor*.
 
-    Ménu de Usuario: Solamente hay tres opciones, "Ver contrato", "Firmar" y "Sali".
+    Menú de Usuario: Solamente hay tres opciones, "Ver contrato", "Firmar" y "Sali".
     
-    Ménu de Administrador:  Solamente hay dos opciones, "Ver Firmas" y "Salir".
+    Menú de Administrador:  Solamente hay dos opciones, "Ver Firmas" y "Salir".
