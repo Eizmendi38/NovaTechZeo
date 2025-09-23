@@ -11,6 +11,6 @@ Nuestro programa muestra las condiciones y términos establecidos por el grupo p
 
 **Paso 3:** Dependiendo de la respuesta irás al ménu de *Usuario* o al de *Administrardor*.
 
-    **Ménu de Usuario:** Solamente hay tres opciones, *Ver contrato*, *Firmar* y *Salir*.
+    Ménu de Usuario: Solamente hay tres opciones, "Ver contrato", "Firmar" y "Sali".
     
-    **Ménu de Administrador:**  Solamente hay dos opciones, *Ver Firmas*y *Salir*.
+    Ménu de Administrador:  Solamente hay dos opciones, "Ver Firmas" y "Salir".
