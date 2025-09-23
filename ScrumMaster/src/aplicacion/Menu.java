@@ -112,91 +112,97 @@ public class Menu {
             System.out.println("error.");
         }
         Random random = new Random();
-        //Pregunta al usuario el tipo de menú al que quiere acceder
-        System.out.println("¿Desea entrar al menú de miembro o al menú de coordinador?\n1. Miembro\n2. Coordinador");
-        System.out.print("Seleccione una opción: ");
-        int usuario = scanner.nextInt();
-        scanner.nextLine();
+    
+        while (true) {
+            System.out.println("Ingresa un nombre de usuario: ");
+            String usuario = scanner.nextLine();
 
-        //Menú para miembros normales
-        if (usuario == 1) {
-            int opcion;
-            do{
-                System.out.println("-----MENU DE OPCIONES DEL USUARIO-----");
-                System.out.println("1. Mostrar contrato");
-                System.out.println("2. Firmar");
-                System.out.println("3. Salir");
-                System.out.print("Seleccione una opción: ");
-                opcion = scanner.nextInt();
-                scanner.nextLine();
+            //Menú para miembros normales
+            if (usuario.equals("Odei") || usuario.equals("Gari") || usuario.equals("Iker")
+                || usuario.equals("Kristian") || usuario.equals("Jon")) {
+                int opcion;
+                boolean loggedIn = true;
 
-                switch (opcion) {
-                    case 1:
-                    //Muestra el contrato
-                    try {
-                        mostrarContrato("ScrumMaster/src/resources/charter.json");
-                    } catch (IOException e) {
-                        System.out.println("error al leer el archivo.");
-                    }
-                    break;
-                    case 2:
-                    System.out.println("¿Aceptas los terminos y condiciones?\n1. SI\n2. NO");
-                    int ockion = scanner.nextInt();
+                while (loggedIn) {
+                    System.out.println("-----MENU DE OPCIONES DEL USUARIO-----");
+                    System.out.println("1. Mostrar contrato");
+                    System.out.println("2. Firmar");
+                    System.out.println("3. Cerrar Sesion");
+                    System.out.println("4. Salir");
+                    System.out.print("Seleccione una opción: ");
+                    opcion = scanner.nextInt();
                     scanner.nextLine();
-                    switch (ockion) {
+
+                    switch (opcion) {
                         case 1:
-                        System.out.println("Escribe tu nombre.");
-                        String nombre = scanner.nextLine();
-                        int id = (int)(random.nextInt((100000 - 10000 + 1)-10000));
-                        firmList.add(new Firmas(id, nombre));
-                        try {
-                        guardarFirmas("ScrumMaster/src/resources/signatures.json", firmList);
-                        } catch (IOException e) {
-                            System.out.println("error al guardar las firmas.");
+                        //Muestra el contrato
+                            try {
+                            mostrarContrato("ScrumMaster/src/resources/charter.json");
+                            } catch (IOException e) {
+                                System.out.println("error al leer el archivo.");
+                            }
                             break;
-                        }
-                        System.out.println("Firma guardada.");
-                        break;
                         case 2:
-                        System.out.println("Volviendo al menú anterior.");
-                        break;
+                            System.out.println("¿Aceptas los terminos y condiciones?\n1. SI\n2. NO");
+                            int ockion = scanner.nextInt();
+                            scanner.nextLine();
+                            switch (ockion) {
+                                case 1:
+                                    String nombre = usuario;
+                                    int id = (int)(random.nextInt((100000 - 10000 + 1)-10000));
+                                    firmList.add(new Firmas(id, nombre));
+                                try {
+                                    guardarFirmas("ScrumMaster/src/resources/signatures.json", firmList);
+                                } catch (IOException e) {
+                                    System.out.println("error al guardar las firmas.");
+                                    break;
+                                }
+                                    System.out.println("Firma guardada.");
+                                    break;
+                                case 2:
+                                    System.out.println("Volviendo al menú anterior.");
+                                    break;
+                                default:
+                                System.out.println("Opción inválida. Cerrando sistema.");
+                            }
+                            break;
+                        case 3:
+                            System.out.println("Cerrando sesion.");
+                            loggedIn = false;
+                            break;
+                        case 4:
+                            System.out.println("Saliendo al sistema.");
+                            scanner.close();
+                            return;
                         default:
-                        System.out.println("Opción inválida. Cerrando sistema.");
+                            //Opción no válida
+                            System.out.println("Opción no válida. Intente de nuevo.");
                     }
-                    case 3:
-                    //Sale del sistema
-                    System.out.println("Saliendo al sistema.");
-                    scanner.close();
-                    return;
                 }
-
-            } while (true);
-        }
-
-
-        //Menú para coordinadores (administradores)
-        if (usuario == 2){
+            } else if (usuario.equals("admin")) {
             int attempts = 0;
             boolean guessed = false;
             //Solicita contraseña hasta 3 intentos
             do {
-            System.out.println("Introduzca la contraseña: ");
-            String contrasena = scanner.nextLine();
-            if (contrasena.equals("1234")) {
-                guessed = true;
-                System.out.println("Bienvenido.");
-            } else {
-                System.out.println("Contraseña incorrecta.");
-                attempts++;
-            }
+                System.out.println("Introduzca la contraseña: ");
+                String contrasena = scanner.nextLine();
+                if (contrasena.equals("1234")) {
+                    guessed = true;
+                    System.out.println("Bienvenido.");
+                } else {
+                    System.out.println("Contraseña incorrecta.");
+                    attempts++;
+                }
             } while (attempts<3 && guessed==false);
 
             if (guessed==true) {
                 int opcion;
-                do {
+                boolean loggedIn = true;
+                while (loggedIn) {
                     System.out.println("-----MENU DE OPCIONES DE ADMINISTRADOR-----");
                     System.out.println("1. Ver todas las firmas");
-                    System.out.println("2. Salir");
+                    System.out.println("2. Cerrar Sesion.");
+                    System.out.println("3. Salir");
                     System.out.println("Seleccione una opción: ");
                     opcion = scanner.nextInt();
                     scanner.nextLine(); 
@@ -209,6 +215,10 @@ public class Menu {
                             }
                             break;
                         case 2:
+                            System.out.println("Cerrando sesion.");
+                            loggedIn = false;
+                            break;
+                        case 3:
                             //Sale del sistema
                             System.out.println("Saliendo del programa...");
                             scanner.close();
@@ -217,12 +227,12 @@ public class Menu {
                             //Opción no válida
                             System.out.println("Opción no válida. Intente de nuevo.");
                     }
-                
-            } while (true);
-        } else {
+                }
+            } else {
             //Si falla la contraseña 3 veces, cierra el programa
             System.out.println("Contraseña incorrecta. Cerrando programa.");
+            }
+            }
         }
     }
-}
 }
