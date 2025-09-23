@@ -10,13 +10,14 @@ public class Firmas {
     private LocalDateTime horaFirmada;//Fecha y hora en que se firma
 
 
-    // Constructor
+    // Constructor que asigna id y nombre, y pone la hora actual como hora de firma
     public Firmas (int id, String firma) {
         this.id = id;
         this.firma = firma;
         this.horaFirmada = LocalDateTime.now();
     }
 
+    // Constructor que permite asignar también la hora de la firma
     public Firmas (int id, String firma, LocalDateTime horaFirmada) {
         this.id = id;
         this.firma = firma;
@@ -43,6 +44,7 @@ public class Firmas {
         this.horaFirmada = horaFirmada;
     }
 
+    //Devuelve una representación en texto de la firma
     @Override
     public String toString() {
         return "ID: " + id + "\nFirma: " + firma + "\nFecha de firma: " + horaFirmada;

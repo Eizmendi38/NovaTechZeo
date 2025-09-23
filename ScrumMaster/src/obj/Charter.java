@@ -4,11 +4,17 @@ import java.util.List;
 import java.util.Map;
 
 public class Charter {
+    //Nombre del proyecto
     private String project;
+    //Misión del proyecto
     private String mission;
+    //Lista de objetivos del proyecto
     private List<String> objectives;
+    //Mapa de roles y sus descripciones
     private Map<String, String> roles;
+    //Lista de normas del equipo
     private List<String> rules;
+    //Lista de castigos en caso de incumplimiento
     private List<String> punishments;
 
     // Getters
