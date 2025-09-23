@@ -22,6 +22,7 @@ import com.google.gson.reflect.TypeToken;
 
 
 public class Menu {
+    //Instancia Gson con adaptadores para LocalDateTime y pretty printing
     private static final Gson gson = new GsonBuilder()
         .registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
             @Override
@@ -38,6 +39,7 @@ public class Menu {
         .setPrettyPrinting()
         .create();
 
+    //Muestra el contenido del contrato (charter) desde un archivo JSON
     public static void mostrarContrato(String archivo) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -78,6 +80,7 @@ public class Menu {
         }
     }
 
+    //Carga la lista de firmas desde un archivo JSON
     public static ArrayList<Firmas> cargarArray(String archivo) throws IOException {
         File f = new File(archivo);
         if (!f.exists()) return new ArrayList<>();
@@ -85,7 +88,7 @@ public class Menu {
         try (Reader reader = new FileReader(f)) {
             ArrayList<Firmas> lista = gson.fromJson(reader, new TypeToken<ArrayList<Firmas>>(){}.getType());
 
-            // Filtramos firmas inválidas (ej: solo tienen id = 0)
+            //Filtramos firmas inválidas (ej: solo tienen id = 0)
             ArrayList<Firmas> validas = new ArrayList<>();
             for (Firmas f1 : lista) {
                 if (f1.getFirma() != null && f1.getHoraFirmada() != null) {
@@ -96,6 +99,7 @@ public class Menu {
         }
     }
 
+    //Guarda la lista de firmas en un archivo JSON
     public static void guardarFirmas(String archivo, ArrayList<Firmas> firmas) throws IOException {
     try (Writer writer = new FileWriter(archivo)) {
         gson.toJson(firmas, writer);
