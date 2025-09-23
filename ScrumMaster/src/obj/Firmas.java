@@ -42,4 +42,9 @@ public class Firmas {
     public void setHoraFirmada(LocalDateTime horaFirmada) {
         this.horaFirmada = horaFirmada;
     }
+
+    @Override
+    public String toString() {
+        return "ID: " + id + "\nFirma: " + firma + "\nFecha de firma: " + horaFirmada;
+    }
 }

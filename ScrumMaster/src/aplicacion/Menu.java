@@ -1,14 +1,42 @@
 package aplicacion;
 
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 import obj.Charter;
+import obj.ContenedorFirmas;
+
 import java.util.*;
+
+import javax.swing.plaf.synth.SynthScrollBarUI;
+
 import obj.Firmas;
 import com.google.gson.*;
+import com.google.gson.reflect.TypeToken;
 
 
 public class Menu {
+    private static final Gson gson = new GsonBuilder()
+        .registerTypeAdapter(LocalDateTime.class, new JsonDeserializer<LocalDateTime>() {
+            @Override
+            public LocalDateTime deserialize(JsonElement json, java.lang.reflect.Type typeOfT, JsonDeserializationContext context) {
+                return LocalDateTime.parse(json.getAsString(), DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+            }
+        })
+        .registerTypeAdapter(LocalDateTime.class, new JsonSerializer<LocalDateTime>() {
+            @Override
+            public JsonElement serialize(LocalDateTime src, java.lang.reflect.Type typeOfSrc, JsonSerializationContext context) {
+                return new JsonPrimitive(src.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+            }
+        })
+        .setPrettyPrinting()
+        .create();
 
     public static void mostrarContrato(String archivo) throws IOException {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -44,13 +72,39 @@ public class Menu {
         }
     }
 
-    public static void rellenarArray() {
+    public static ArrayList<Firmas> cargarArray(String archivo) throws IOException {
+        File f = new File(archivo);
+        if (!f.exists()) return new ArrayList<>();
 
+        try (Reader reader = new FileReader(f)) {
+            ArrayList<Firmas> lista = gson.fromJson(reader, new TypeToken<ArrayList<Firmas>>(){}.getType());
+
+            // Filtramos firmas inválidas (ej: solo tienen id = 0)
+            ArrayList<Firmas> validas = new ArrayList<>();
+            for (Firmas f1 : lista) {
+                if (f1.getFirma() != null && f1.getHoraFirmada() != null) {
+                    validas.add(f1);
+                }
+            }
+            return validas;
+        }
     }
+
+    public static void guardarFirmas(String archivo, ArrayList<Firmas> firmas) throws IOException {
+    try (Writer writer = new FileWriter(archivo)) {
+        gson.toJson(firmas, writer);
+    }
+}
 
     public static void main(String[] args) {
      Scanner scanner = new Scanner(System.in);
         ArrayList<Firmas> firmList = new ArrayList<>();
+
+        try {
+        firmList = cargarArray("ScrumMaster/src/resources/signatures.json");
+        } catch (IOException e) {
+            System.out.println("error.");
+        }
         Random random = new Random();
         System.out.println("¿Desea entrar al menú de miembro o al menú de coordinador?\n1. Miembro\n2. Coordinador");
         int usuario = scanner.nextInt();
@@ -75,8 +129,33 @@ public class Menu {
                         System.out.println("error al leer el archivo.");
                     }
                     break;
+                    case 2:
+                    System.out.println("¿Aceptas los terminos y condiciones?\n1. SI\n2. NO");
+                    int ockion = scanner.nextInt();
+                    scanner.nextLine();
+                    switch (ockion) {
+                        case 1:
+                        System.out.println("Escribe tu nombre.");
+                        String nombre = scanner.nextLine();
+                        int id = (int)(random.nextInt((100000 - 10000 + 1)-10000));
+                        firmList.add(new Firmas(id, nombre));
+                        try {
+                        guardarFirmas("ScrumMaster/src/resources/signatures.json", firmList);
+                        } catch (IOException e) {
+                            System.out.println("error al guardar las firmas.");
+                            break;
+                        }
+                        System.out.println("Firma guardada.");
+                        break;
+                        case 2:
+                        System.out.println("Volviendo al menú anterior.");
+                        break;
+                        default:
+                        System.out.println("Opción inválida. Cerrando sistema.");
+                    }
                     case 3:
                     System.out.println("Saliendo al sistema.");
+                    scanner.close();
                     return;
                 }
 
@@ -111,10 +190,14 @@ public class Menu {
 
                     switch (opcion) {
                         case 1:
-                        
+                            for (int i = 0; i<firmList.size(); i++) {
+                                System.out.println("Firma número "+(i+1)+":");
+                                System.out.println(firmList.get(i).toString());
+                            }
                             break;
                         case 2:
                             System.out.println("Saliendo del programa...");
+                            scanner.close();
                             return;
                         default:
                             System.out.println("Opción no válida. Intente de nuevo.");
