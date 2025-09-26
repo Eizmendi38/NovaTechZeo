@@ -238,7 +238,8 @@ public class Menu {
                             } else {
                                 //Si falla la contraseña 3 veces, vuelve al menú de usuario
                                 System.out.println("Contraseña incorrecta. Volviendo al menú de usuario.");
-                            }
+                            } 
+                            break;
                         case 6:
                             System.out.println("Saliendo al sistema.");
                             scanner.close();
