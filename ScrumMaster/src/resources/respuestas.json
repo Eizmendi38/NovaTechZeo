@@ -1,0 +1,20 @@
+[
+  {
+    "usuario": "Example",
+    "fecha": "1909-01-01T00:00:00",
+    "respuestas": {
+      "--- COMPETENCIAS TÉCNICAS ---": "OK",
+      "Bloque - ¿Qué sé (fortalezas)?": "Sé configurar usuarios básicos en Odoo",
+      "Bloque - ¿Qué necesito saber / aprender?": "Quiero aprender a desarrollar módulos",
+      "ERP / Odoo - ¿Qué sé?": "Instalación básica",
+      "ERP / Odoo - ¿Qué necesito saber / aprender?": "Integraciones con APIs",
+      "Docker / Contenedores - ¿Qué sé?": "Levantar contenedores simples",
+      "Docker / Contenedores - ¿Qué necesito saber / aprender?": "Optimización y seguridad",
+      "--- COMPETENCIAS TRANSVERSALES ---": "OK",
+      "Comunicación oral - ¿Qué sé?": "Presentaciones en clase",
+      "Comunicación oral - ¿Qué necesito saber / aprender?": "Exponer ante clientes",
+      "Trabajo en equipo - ¿Qué sé?": "Colaboración en grupos pequeños",
+      "Trabajo en equipo - ¿Qué necesito saber / aprender?": "Gestión de conflictos"
+    }
+  }
+]

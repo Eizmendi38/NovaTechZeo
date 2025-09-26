@@ -132,7 +132,8 @@ public class Menu {
                     System.out.println("1. Mostrar contrato");
                     System.out.println("2. Firmar");
                     System.out.println("3. Cerrar Sesion");
-                    System.out.println("4. Salir");
+                    System.out.println("4. Contestar formulario");
+                    System.out.println("5. Salir");
                     System.out.print("Seleccione una opción: ");
                     opcion = scanner.nextInt();
                     scanner.nextLine();
@@ -175,6 +176,13 @@ public class Menu {
                             loggedIn = false;
                             break;
                         case 4:
+                                FormularioManager.mostrarYResponderFormulario(
+                                "ScrumMaster/src/resources/formulario.json",
+                                "ScrumMaster/src/resources/respuestas.json",
+                                usuario
+                                );
+                            break;
+                        case 5:
                             System.out.println("Saliendo al sistema.");
                             scanner.close();
                             return;
@@ -206,7 +214,8 @@ public class Menu {
                     System.out.println("-----MENU DE OPCIONES DE ADMINISTRADOR-----");
                     System.out.println("1. Ver todas las firmas");
                     System.out.println("2. Cerrar Sesion.");
-                    System.out.println("3. Salir");
+                    System.out.println("3. Ver respuestas del formulario");
+                    System.out.println("4. Salir");
                     System.out.println("Seleccione una opción: ");
                     opcion = scanner.nextInt();
                     scanner.nextLine(); 
@@ -223,6 +232,9 @@ public class Menu {
                             loggedIn = false;
                             break;
                         case 3:
+                            FormularioManager.verRespuestas("ScrumMaster/src/resources/respuestas.json");
+                            break;
+                        case 4:
                             //Sale del sistema
                             System.out.println("Saliendo del programa...");
                             scanner.close();
