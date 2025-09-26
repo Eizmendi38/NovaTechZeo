@@ -1,20 +1,34 @@
 [
   {
-    "usuario": "Example",
-    "fecha": "1909-01-01T00:00:00",
+    "usuario": "Gari",
+    "fecha": "2025-09-26T08:38:05.8122788",
     "respuestas": {
-      "--- COMPETENCIAS TÉCNICAS ---": "OK",
-      "Bloque - ¿Qué sé (fortalezas)?": "Sé configurar usuarios básicos en Odoo",
-      "Bloque - ¿Qué necesito saber / aprender?": "Quiero aprender a desarrollar módulos",
-      "ERP / Odoo - ¿Qué sé?": "Instalación básica",
-      "ERP / Odoo - ¿Qué necesito saber / aprender?": "Integraciones con APIs",
-      "Docker / Contenedores - ¿Qué sé?": "Levantar contenedores simples",
-      "Docker / Contenedores - ¿Qué necesito saber / aprender?": "Optimización y seguridad",
-      "--- COMPETENCIAS TRANSVERSALES ---": "OK",
-      "Comunicación oral - ¿Qué sé?": "Presentaciones en clase",
-      "Comunicación oral - ¿Qué necesito saber / aprender?": "Exponer ante clientes",
-      "Trabajo en equipo - ¿Qué sé?": "Colaboración en grupos pequeños",
-      "Trabajo en equipo - ¿Qué necesito saber / aprender?": "Gestión de conflictos"
+      "--- COMPETENCIAS TÉCNICAS ---": "a",
+      "Bloque - ¿Qué sé (fortalezas)?": "a",
+      "Bloque - ¿Qué necesito saber / aprender?": "a",
+      "ERP / Odoo - ¿Qué sé?": "a",
+      "ERP / Odoo - ¿Qué necesito saber / aprender?": "a",
+      "Módulos de empresa (finanzas, clientes) - ¿Qué sé?": "a",
+      "Módulos de empresa (finanzas, clientes) - ¿Qué necesito saber / aprender?": "a",
+      "Docker / Contenedores - ¿Qué sé?": "a",
+      "Docker / Contenedores - ¿Qué necesito saber / aprender?": "a",
+      "Base de Datos (Postgres) - ¿Qué sé?": "a",
+      "Base de Datos (Postgres) - ¿Qué necesito saber / aprender?": "a",
+      "Integraciones (Java / otros) - ¿Qué sé?": "a",
+      "Integraciones (Java / otros) - ¿Qué necesito saber / aprender?": "a",
+      "Gestión del Proyecto - ¿Qué sé?": "a",
+      "Gestión del Proyecto - ¿Qué necesito saber / aprender?": "a",
+      "Infraestructura / DevOps - ¿Qué sé?": "a",
+      "Infraestructura / DevOps - ¿Qué necesito saber / aprender?": "a",
+      "--- COMPETENCIAS TRANSVERSALES ---": "a",
+      "Comunicación oral - ¿Qué sé?": "a",
+      "Comunicación oral - ¿Qué necesito saber / aprender?": "a",
+      "Comunicación escrita - ¿Qué sé?": "a",
+      "Comunicación escrita - ¿Qué necesito saber / aprender?": "a",
+      "Trabajo en equipo - ¿Qué sé?": "a",
+      "Trabajo en equipo - ¿Qué necesito saber / aprender?": "a",
+      "Competencia personal - ¿Qué sé?": "a",
+      "Competencia personal - ¿Qué necesito saber / aprender?": "a"
     }
   }
 ]

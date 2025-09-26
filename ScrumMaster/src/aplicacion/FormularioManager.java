@@ -56,7 +56,14 @@ public class FormularioManager {
             Map<String, String> respuestas = new LinkedHashMap<>();
 
             System.out.println("\n--- FORMULARIO ---");
+            
             for (String pregunta : preguntas) {
+            // Si es un separador (texto de presentación), solo mostrar
+                if (pregunta.startsWith("---")) {
+                System.out.println("\n" + pregunta + "\n");
+                continue; // no pedir respuesta
+                }
+
                 System.out.println(pregunta);
                 String respuesta = scanner.nextLine();
                 respuestas.put(pregunta, respuesta);
