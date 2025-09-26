@@ -133,7 +133,8 @@ public class Menu {
                     System.out.println("2. Firmar");
                     System.out.println("3. Cerrar Sesion");
                     System.out.println("4. Contestar formulario");
-                    System.out.println("5. Salir");
+                    System.out.println("5. Acceder al menú de administrador");
+                    System.out.println("6. Salir");
                     System.out.print("Seleccione una opción: ");
                     opcion = scanner.nextInt();
                     scanner.nextLine();
@@ -183,6 +184,62 @@ public class Menu {
                                 );
                             break;
                         case 5:
+                            // Intentar acceder al menú de administrador desde un usuario normal
+                            int attempts = 0;
+                            boolean guessed = false;
+                            do {
+                                System.out.println("Introduzca la contraseña de administrador: ");
+                                String contrasena = scanner.nextLine();
+                                if (contrasena.equals("1234")) {
+                                    guessed = true;
+                                    System.out.println("Contraseña correcta. Accediendo al menú de administrador...");
+                                } else {
+                                    System.out.println("Contraseña incorrecta.");
+                                    attempts++;
+                                }
+                            } while (attempts < 3 && !guessed);
+                            if (guessed) {
+                                int adminOption;
+                                boolean inAdminMenu = true;
+                                while (inAdminMenu) {
+                                    System.out.println("-----MENÚ DE ADMINISTRADOR-----");
+                                    System.out.println("1. Ver todas las firmas");
+                                    System.out.println("2. Volver al menú de usuario");
+                                    System.out.println("3. Ver respuestas del formulario");
+                                    System.out.println("4. Salir");
+                                    System.out.print("Seleccione una opción: ");
+                                    adminOption = scanner.nextInt();
+                                    scanner.nextLine();
+
+                                    switch (adminOption) {
+                                        case 1:
+                                            for (int i = 0; i < firmList.size(); i++) {
+                                                System.out.println("Firma número " + (i + 1) + ":");
+                                                System.out.println(firmList.get(i).toString());
+                                            }
+                                            break;
+                                        case 2:
+                                            System.out.println("Volviendo al menú de usuario.");
+                                            inAdminMenu = false;
+                                            break;
+                                        case 3:
+                                            FormularioManager.verRespuestas("ScrumMaster/src/resources/respuestas.json");
+                                            break;
+                                        case 4:
+                                            //Salir del programa
+                                            System.out.println("Saliendo del programa...");
+                                            scanner.close();
+                                            return;
+                                        default:
+                                            //Opción no válida
+                                            System.out.println("Opción no válida. Intente de nuevo.");
+                                    }
+                                }
+                            } else {
+                                //Si falla la contraseña 3 veces, vuelve al menú de usuario
+                                System.out.println("Contraseña incorrecta. Volviendo al menú de usuario.");
+                            }
+                        case 6:
                             System.out.println("Saliendo al sistema.");
                             scanner.close();
                             return;
